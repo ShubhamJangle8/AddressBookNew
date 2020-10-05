@@ -22,12 +22,28 @@ public class AddressBookMain {
 		Contact contact = new Contact(fName,lName,address,city,state,zip,pNo,email);
 		return contact;
 	}
-
 	public static void main(String[] args) {
-		
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome to the address Book");
-		new AddressBook().addContact(new AddressBookMain().getDetails());
-		
-		
+		AddressBook addBook = new AddressBook();
+		AddressBookMain addMain = new AddressBookMain();
+		do {
+			System.out.println("Enter the option what you want to execute : 1. AddContact 2. EditContact 3. Exit");
+			int option = sc.nextInt();
+			switch(option) {
+				case 1:
+					addBook.addContact(addMain.getDetails());
+					break;
+				case 2:
+					System.out.println("Enter the name you want to edit details for : ");
+					String newName = sc.next();
+					addBook.editContact(newName);
+					break;
+				default:
+					System.out.println("Exit");
+					break;		
+			}
+		System.out.println("Do you want to perform another operation ?(Y/N)");
+		}while(sc.next().charAt(0) == 'Y');
 	}
 }
