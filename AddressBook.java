@@ -9,7 +9,7 @@ public class AddressBook {
 	public void addContact(Contact contact) {
 		addressBook.add(contact);
 	}
-	public ArrayList<Contact> getArrayList(){
+	public ArrayList<Contact> getArray(){
 		return addressBook;
 	}
 	public void setArrayList(ArrayList<Contact> array) {

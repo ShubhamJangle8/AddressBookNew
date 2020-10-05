@@ -23,32 +23,35 @@ public class AddressBookMain extends AddressBook{
 		Contact contact = new Contact(fName,lName,address,city,state,zip,pNo,email);
 		return contact;
 	}
-	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome to the address Book");
 		AddressBook addBook = new AddressBook();
 		AddressBookMain addMain = new AddressBookMain();
-		System.out.println("Enter the option what you want to execute : 1. AddContact 2. Edit Contact 3. Delete Contact 4. Exit");
-		int option = sc.nextInt();
-		switch(option) {
-			case 1:
-				addBook.addContact(addMain.getDetails());
-				break;
-			case 2:
-				System.out.println("Enter the name you want to edit details for : ");
-				String newName = sc.next();
-				addBook.editContact(newName);
-				break;
-			case 3:
-				System.out.println("Enter the person name you want to delete details for : ");
-				String dName = sc.next();
-				addBook.deleteContact(dName);
-				break;
-			default:
-				System.out.println("Exit");
-				break;
-		}
+		
+		do {
+			System.out.println("Enter the option what you want to execute : 1. AddContact 2. Edit Contact 3. Delete Contact 4. Exit");
+			int option = sc.nextInt();
+			switch(option) {
+				case 1:
+					addBook.addContact(addMain.getDetails());
+					break;
+				case 2:
+					System.out.println("Enter the name you want to edit details for : ");
+					String newName = sc.next();
+					addBook.editContact(newName);
+					break;
+				case 3:
+					System.out.println("Enter the person name you want to delete details for : ");
+					String dName = sc.next();
+					addBook.deleteContact(dName);
+					break;
+				default:
+					System.out.println("Thankyou");
+					break;
+			}
+		System.out.println("Do you want to perform another operation ?(Y/N)");
+		}while(sc.next().charAt(0) == 'Y');
 		sc.close();
 	}
 }
