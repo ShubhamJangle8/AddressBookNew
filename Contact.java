@@ -1,4 +1,5 @@
 package com.assignment;
+
 public class Contact {
 	String firstName;
 	String lastName;
@@ -66,5 +67,8 @@ public class Contact {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String toString() {
+		return firstName + lastName + address + city + state + zip + phoneNo + email;
 	}
 }

@@ -9,16 +9,17 @@ public class AddressBook {
 	public void addContact(Contact contact) {
 		addressBook.add(contact);
 	}
-	public ArrayList<Contact> getArray(){
+	public ArrayList<Contact> getArrayList(){
 		return addressBook;
 	}
 	public void setArrayList(ArrayList<Contact> array) {
 		this.addressBook = array; 
 	}
 	public void editContact(String newName) {
-		Scanner sc = new Scanner( System.in);
+		
 		for(Contact contact:addressBook) {
 			if(newName.equalsIgnoreCase(contact.getFirstName())) {
+				Scanner sc = new Scanner(System.in);
 				System.out.println("Enter what you want to change : ");
 				int choice = sc.nextInt();
 				switch(choice) {
@@ -58,6 +59,13 @@ public class AddressBook {
 			}
 			else {
 				System.out.println("No such contact exists");
+			}
+		}
+	}
+	public void deleteContact(String name) {
+		for(int i = 0; i < addressBook.size(); i++) {
+			if(name.equals(addressBook.get(i).getFirstName())) {
+				addressBook.remove(addressBook.get(i));
 			}
 		}
 	}
