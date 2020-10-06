@@ -1,22 +1,25 @@
 package com.assignment;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 public class AddressBook {
-	ArrayList<Contact> addressBook;
+	LinkedList<Contact> addressBook;
+	String addLocation;
 	public AddressBook() {
-		addressBook = new ArrayList<Contact>();
+		addressBook = new LinkedList<Contact>();
+	}
+	public AddressBook(String msg) {
+		this.addLocation = msg;
 	}
 	public void addContact(Contact contact) {
 		addressBook.add(contact);
 	}
-	public ArrayList<Contact> getArray(){
+	public LinkedList<Contact> getArray(){
 		return addressBook;
 	}
-	public void setArrayList(ArrayList<Contact> array) {
+	public void setArrayList(LinkedList<Contact> array) {
 		this.addressBook = array; 
 	}
 	public void editContact(String newName) {
-		
 		for(Contact contact:addressBook) {
 			if(newName.equalsIgnoreCase(contact.getFirstName())) {
 				Scanner sc = new Scanner(System.in);

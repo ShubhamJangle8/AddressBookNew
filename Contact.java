@@ -1,5 +1,4 @@
 package com.assignment;
-
 public class Contact {
 	String firstName;
 	String lastName;

@@ -1,8 +1,17 @@
 package com.assignment;
-
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Scanner;
 public class AddressBookMain extends AddressBook{
 	Scanner sc = new Scanner(System.in);
+	LinkedList<AddressBook> linkAddressBook = new LinkedList<>();
+	AddressBook addBook = new AddressBook();
+	Map<String,AddressBook> addMapBook = new HashMap<>();
+	public void addAddressBook(String s) {
+		linkAddressBook.add(addBook);
+		addMapBook.put(s, addBook);
+	}
 	public Contact getDetails() {
 		System.out.println("Enter your first name : ");
 		String fName = sc.next();
@@ -26,32 +35,35 @@ public class AddressBookMain extends AddressBook{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome to the address Book");
-		AddressBook addBook = new AddressBook();
 		AddressBookMain addMain = new AddressBookMain();
-		
 		do {
-			System.out.println("Enter the option what you want to execute : 1. AddContact 2. Edit Contact 3. Delete Contact 4. Exit");
+			System.out.println("Enter the option what you want to execute : 1. AddContact 2. Edit Contact 3. Delete Contact 4. Add an AddressBook 5. Exit");
 			int option = sc.nextInt();
 			switch(option) {
 				case 1:
-					addBook.addContact(addMain.getDetails());
+					addMain.addBook.addContact(addMain.getDetails());
 					break;
 				case 2:
 					System.out.println("Enter the name you want to edit details for : ");
 					String newName = sc.next();
-					addBook.editContact(newName);
+					addMain.addBook.editContact(newName);
 					break;
 				case 3:
 					System.out.println("Enter the person name you want to delete details for : ");
 					String dName = sc.next();
-					addBook.deleteContact(dName);
+					addMain.addBook.deleteContact(dName);
+					break;
+				case 4:
+					System.out.println("Add an Address Book");
+					String addressBookName = sc.next();
+					addMain.addAddressBook(addressBookName);
 					break;
 				default:
 					System.out.println("Thankyou");
 					break;
 			}
 		System.out.println("Do you want to perform another operation ?(Y/N)");
-		}while(sc.next().charAt(0) == 'Y');
+		} while(sc.next().charAt(0) == 'Y');
 		sc.close();
 	}
 }
