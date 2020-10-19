@@ -1,11 +1,8 @@
 package com.assignment;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class AddressBookMain {
 
@@ -39,28 +36,6 @@ public class AddressBookMain {
 		addressBookMap.put(city, addBook);
 	}
 
-	public void searchPersonByCity(String name, String city) {
-		List<Contact> list = new ArrayList<Contact>();
-		for (Map.Entry<String, AddressBook> entry : addressBookMap.entrySet()) {
-			list = entry.getValue().getBook().stream().filter(c -> c.getCity().equals(city))
-					.filter(c -> (c.getFirstName() + " " + c.getLastName()).equals(name)).collect(Collectors.toList());
-		}
-		for (Contact c : list) {
-			System.out.println(c);
-		}
-	}
-
-	public void searchPersonByState(String name, String state) {
-		List<Contact> list = new ArrayList<Contact>();
-		for (Map.Entry<String, AddressBook> entry : addressBookMap.entrySet()) {
-			list = entry.getValue().getBook().stream().filter(c -> c.getState().equals(state))
-					.filter(c -> (c.getFirstName() + " " + c.getLastName()).equals(name)).collect(Collectors.toList());
-		}
-		for (Contact c : list) {
-			System.out.println(c);
-		}
-	}
-
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		AddressBookMain addBookMain = new AddressBookMain();
@@ -72,9 +47,7 @@ public class AddressBookMain {
 			System.out.println("3.to edit contact");
 			System.out.println("4.to delete contact");
 			System.out.println("5.to view addbook");
-			System.out.println("6.to search contact in city");
-			System.out.println("7.to search contact in city");
-			System.out.println("8.exit");
+			System.out.println("6.exit");
 			v = scanner.nextInt();
 			scanner.nextLine();
 			switch (v) {
@@ -130,20 +103,6 @@ public class AddressBookMain {
 				}
 				break;
 			case 6:
-				System.out.println("Enter the name to search");
-				String person = scanner.nextLine();
-				System.out.println("Enter the city");
-				city = scanner.nextLine();
-				addBookMain.searchPersonByCity(person, city);
-				break;
-			case 7:
-				System.out.println("Enter the name to search");
-				String per = scanner.nextLine();
-				System.out.println("Enter the state");
-				String stat = scanner.nextLine();
-				addBookMain.searchPersonByCity(per, stat);
-				break;
-			case 8:
 				System.exit(0);
 				break;
 			}
