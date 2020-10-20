@@ -1,8 +1,11 @@
 package com.assignment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
 
@@ -36,6 +39,50 @@ public class AddressBookMain {
 		addressBookMap.put(city, addBook);
 	}
 
+	public void searchPersonByCity(String name, String city) {
+		List<Contact> list = new ArrayList<Contact>();
+		for (Map.Entry<String, AddressBook> entry : addressBookMap.entrySet()) {
+			list = entry.getValue().getBook().stream().filter(c -> c.getCity().equals(city))
+					.filter(c -> (c.getFirstName() + " " + c.getLastName()).equals(name)).collect(Collectors.toList());
+		}
+		for (Contact c : list) {
+			System.out.println(c);
+		}
+	}
+
+	public void searchPersonByState(String name, String state) {
+		List<Contact> list = new ArrayList<Contact>();
+		for (Map.Entry<String, AddressBook> entry : addressBookMap.entrySet()) {
+			list = entry.getValue().getBook().stream().filter(c -> c.getState().equals(state))
+					.filter(c -> (c.getFirstName() + " " + c.getLastName()).equals(name)).collect(Collectors.toList());
+		}
+		for (Contact c : list) {
+			System.out.println(c);
+		}
+	}
+
+	public void viewPersonByCity(String city) {
+		List<Contact> list = new ArrayList<Contact>();
+		for (Map.Entry<String, AddressBook> entry : addressBookMap.entrySet()) {
+			list = entry.getValue().getBook().stream().filter(c -> c.getCity().equals(city))
+					.collect(Collectors.toList());
+		}
+		for (Contact c : list) {
+			System.out.println(c);
+		}
+	}
+
+	public void viewPersonByState(String state) {
+		List<Contact> list = new ArrayList<Contact>();
+		for (Map.Entry<String, AddressBook> entry : addressBookMap.entrySet()) {
+			list = entry.getValue().getBook().stream().filter(c -> c.getState().equals(state))
+					.collect(Collectors.toList());
+		}
+		for (Contact c : list) {
+			System.out.println(c);
+		}
+	}
+
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		AddressBookMain addBookMain = new AddressBookMain();
@@ -47,7 +94,11 @@ public class AddressBookMain {
 			System.out.println("3.to edit contact");
 			System.out.println("4.to delete contact");
 			System.out.println("5.to view addbook");
-			System.out.println("6.exit");
+			System.out.println("6.to search contact in city");
+			System.out.println("7.to search contact in state");
+			System.out.println("8.to view contacts in city");
+			System.out.println("9.to view contacts in state");
+			System.out.println("10.exit");
 			v = scanner.nextInt();
 			scanner.nextLine();
 			switch (v) {
@@ -57,10 +108,10 @@ public class AddressBookMain {
 				addAddressBook(City);
 				break;
 			case 2:
+				System.out.println("Enter name of the addressBook you want to add contact in : ");
+				String city = scanner.next();
 				System.out.println("Enter the details of the contact you want to add : ");
 				Contact c = getDetails();
-				System.out.println("Enter name of the addressBook you want to add in : ");
-				String city = scanner.next();
 				for (Map.Entry<String, AddressBook> entry : addressBookMap.entrySet()) {
 					if (entry.getKey().equalsIgnoreCase(city)) {
 						entry.getValue().addContact(c);
@@ -103,6 +154,30 @@ public class AddressBookMain {
 				}
 				break;
 			case 6:
+				System.out.println("Enter the name to search");
+				String person = scanner.nextLine();
+				System.out.println("Enter the city");
+				city = scanner.nextLine();
+				addBookMain.searchPersonByCity(person, city);
+				break;
+			case 7:
+				System.out.println("Enter the name to search");
+				String per = scanner.nextLine();
+				System.out.println("Enter the state");
+				String stat = scanner.nextLine();
+				addBookMain.searchPersonByState(per, stat);
+				break;
+			case 8:
+				System.out.println("Enter the city");
+				city = scanner.nextLine();
+				addBookMain.viewPersonByCity(city);
+				break;
+			case 9:
+				System.out.println("Enter the state");
+				stat = scanner.nextLine();
+				addBookMain.viewPersonByState(stat);
+				break;
+			case 10:
 				System.exit(0);
 				break;
 			}
