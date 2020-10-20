@@ -152,6 +152,7 @@ public class AddressBookMain {
 			case 8:
 				System.exit(0);
 				break;
+				
 			}
 		}
 	}
