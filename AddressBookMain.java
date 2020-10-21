@@ -1,8 +1,8 @@
 package com.assignment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -107,7 +107,13 @@ public class AddressBookMain {
 		}
 		System.out.println("Number of persons in this state are : " + count);
 	}
-
+	
+	public void sortByName() {
+		for(Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {
+			Collections.sort(entry.getValue().getBook(),new SortByNameCompare());
+		}
+	}
+	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		AddressBookMain addBookMain = new AddressBookMain();
@@ -124,7 +130,8 @@ public class AddressBookMain {
 			System.out.println("9.to view contacts in state");
 			System.out.println("10.to count contacts in city");
 			System.out.println("11.to count contacts in state");
-			System.out.println("12.exit");
+			System.out.println("12.to sort the addressBook by Name");
+			System.out.println("13.exit");
 			System.out.println("Enter what you want to do : ");
 			v = scanner.nextInt();
 			scanner.nextLine();
@@ -212,6 +219,9 @@ public class AddressBookMain {
 					addBookMain.countPersonsByState(state);
 					break;
 				case 12:
+					addBookMain.sortByName();
+					break;
+				case 13:
 					System.exit(0);
 					break;
 
