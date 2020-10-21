@@ -9,6 +9,9 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class AddressBookMain {
+	public enum IOService {
+		CONSOLE_IO, FILE_IO, DB_IO, REST_IO
+	};
 
 	public static Map<String, AddressBook> addressBookMap = new HashMap<>();
 
@@ -120,6 +123,18 @@ public class AddressBookMain {
 		}
 	}
 	
+	public void writeData(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO)) {
+			new AddressBookIO().writeData(addressBookMap);
+		}
+	}
+
+	public void readData(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO)) {
+			new AddressBookIO().readData();
+		}
+	}
+	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		AddressBookMain addBookMain = new AddressBookMain();
@@ -138,7 +153,9 @@ public class AddressBookMain {
 			System.out.println("11.to count contacts in state");
 			System.out.println("12.to sort the addressBook by Name");
 			System.out.println("13.to sort the addressBook by Zip");
-			System.out.println("14.exit");
+			System.out.println("14.to write to file");
+			System.out.println("15.to read from file");
+			System.out.println("16.exit");
 			System.out.println("Enter what you want to do : ");
 			v = scanner.nextInt();
 			scanner.nextLine();
@@ -232,6 +249,12 @@ public class AddressBookMain {
 					addBookMain.sortByZip();
 					break;
 				case 14:
+					addBookMain.writeData(IOService.FILE_IO);
+					break;
+				case 15:
+					addBookMain.readData(IOService.FILE_IO);
+					break;
+				case 16:
 					System.exit(0);
 					break;
 
