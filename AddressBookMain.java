@@ -1,4 +1,4 @@
-package com.assignment;
+package com.addressbook;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,10 +22,13 @@ public class AddressBookMain {
 		String lastName = scanner.next();
 		System.out.println("Enter the address");
 		String address = scanner.next();
+		scanner.nextLine();
 		System.out.println("Enter the city name");
 		String city = scanner.next();
+		scanner.nextLine();
 		System.out.println("Enter the state name");
 		String state = scanner.next();
+		scanner.nextLine();
 		System.out.println("Enter the ZIP code");
 		String zip = scanner.next();
 		System.out.println("Enter the phone number");
@@ -135,6 +138,31 @@ public class AddressBookMain {
 		}
 	}
 	
+	public void readDataCSV(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO)) {
+			new AddressBookFileService().readDataCSV();
+		}
+	}
+
+	public void writeDataCSV(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO)) {
+			new AddressBookFileService().writeDataCSV(addressBookMap);
+		}
+
+	}
+
+	public void readDataGSON(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO)) {
+			new AddressBookFileService().readDataGSON();
+		}
+	}
+
+	public void writeDataGSON(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO)) {
+			new AddressBookFileService().writeDataGSON(addressBookMap);
+		}
+	}
+	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		AddressBookMain addBookMain = new AddressBookMain();
@@ -155,7 +183,11 @@ public class AddressBookMain {
 			System.out.println("13.to sort the addressBook by Zip");
 			System.out.println("14.to write to file");
 			System.out.println("15.to read from file");
-			System.out.println("16.exit");
+			System.out.println("16.to write to csv");
+			System.out.println("17.to read from csv");
+			System.out.println("18.to write to gson");
+			System.out.println("19.to read from gson");
+			System.out.println("20.exit");
 			System.out.println("Enter what you want to do : ");
 			v = scanner.nextInt();
 			scanner.nextLine();
@@ -255,6 +287,18 @@ public class AddressBookMain {
 					addBookMain.readData(IOService.FILE_IO);
 					break;
 				case 16:
+					addBookMain.writeDataCSV(IOService.FILE_IO);
+					break;
+				case 17:
+					addBookMain.readDataCSV(IOService.FILE_IO);
+					break;
+				case 18:
+					addBookMain.writeDataGSON(IOService.FILE_IO);
+					break;
+				case 19:
+					addBookMain.readDataGSON(IOService.FILE_IO);
+					break;
+				case 20:
 					System.exit(0);
 					break;
 

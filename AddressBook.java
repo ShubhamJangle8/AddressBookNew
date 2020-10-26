@@ -1,4 +1,4 @@
-package com.assignment;
+package com.addressbook;
 
 import java.util.*;
 
@@ -28,7 +28,7 @@ public class AddressBook{
 		String check;
 		for (int i = 0; i < contactArray.size(); i++) {
 			Contact contact = contactArray.get(i);
-			String editName = contactArray.get(i).getFirstName() + contactArray.get(i).getLastName();
+			String editName = contactArray.get(i).getFirstName() + " " + contactArray.get(i).getLastName();
 			if (name.equalsIgnoreCase(editName)) {
 				Scanner sc = new Scanner(System.in);
 				do {

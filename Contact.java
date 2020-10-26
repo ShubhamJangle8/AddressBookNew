@@ -1,4 +1,4 @@
-package com.assignment;
+package com.addressbook;
 
 public class Contact{
 	private String firstName;
@@ -103,3 +103,4 @@ public class Contact{
 				+ ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber + ", email=" + email + "]";
 	}
 }
+
